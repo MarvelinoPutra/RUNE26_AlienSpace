@@ -9,6 +9,6 @@ public class ObstacleMove : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        //transform.position;
+        transform.position += Vector3.left * _speed * Time.deltaTime;
     }
 }
