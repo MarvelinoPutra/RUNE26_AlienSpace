@@ -19,4 +19,12 @@ public class ObstacleManager : MonoBehaviour
         Time.timeScale = 0f;
         Debug.Log("[ObstacleManager] Player hit an obstacle! Game Over.");
     }
+
+    [Header("Global Speed Settings")]
+    public float globalSpeed = 5f;
+
+    public float GetCurrentSpeed()
+    {
+        return globalSpeed;
+    }
 }

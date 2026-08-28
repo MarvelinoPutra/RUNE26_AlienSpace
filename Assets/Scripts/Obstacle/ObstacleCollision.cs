@@ -1,12 +1,15 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Collider2D))]
 public class ObstacleCollision : MonoBehaviour
 {
     private void Awake()
     {
-        // Automatically set the collider to Trigger mode
-        GetComponent<Collider2D>().isTrigger = true;
+        // Tetapkan isTrigger jika collider sudah ada
+        Collider2D col = GetComponent<Collider2D>();
+        if (col != null)
+        {
+            col.isTrigger = true;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)

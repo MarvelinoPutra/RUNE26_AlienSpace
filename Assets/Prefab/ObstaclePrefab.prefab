@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2323217570329912344}
   - component: {fileID: 7050158999230177392}
   - component: {fileID: -7220293710876544689}
+  - component: {fileID: 9146505794791000019}
   m_Layer: 0
   m_Name: ObstaclePrefab
   m_TagString: Untagged
@@ -132,7 +133,7 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.1}
   serializedVersion: 2
   m_Radius: 0.1
 --- !u!114 &-7220293710876544689
@@ -147,3 +148,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 792d1a5ac8bef9f438915cc9088c9acc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &9146505794791000019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3550451074615173273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e219b69dcc6204249ba04c9b84122342, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _obstacleSprites:
+  - {fileID: -4154624844594012573, guid: 265062261a678bc43a3938a0f7b31adf, type: 3}
+  - {fileID: -2193440512487603903, guid: 694c0cc709ed4ec41adbd667d15647bd, type: 3}
+  - {fileID: 1809278868438548993, guid: 7ee122f197600c24fba3987923163b66, type: 3}
+  _useExactPolygonCollider: 1
