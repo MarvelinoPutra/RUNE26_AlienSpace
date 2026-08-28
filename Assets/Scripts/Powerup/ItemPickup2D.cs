@@ -32,6 +32,7 @@ public class ItemPickup2D : MonoBehaviour
             if (bubbleBreakEffectPrefab != null)
             {
                 Instantiate(bubbleBreakEffectPrefab, transform.position, Quaternion.identity);
+                AudioManager.Instance.PlaySFX("Bubble");
             }
 
             Destroy(gameObject);
