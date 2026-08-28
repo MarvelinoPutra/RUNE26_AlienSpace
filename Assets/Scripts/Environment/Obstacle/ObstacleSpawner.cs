@@ -9,7 +9,7 @@ public class ObstacleSpawner : MonoBehaviour
 
     [Header("Lane Settings")]
     [SerializeField]
-    private float[] _laneYPositions = new float[3] { 2.8f, 1.3f, -0.3f };
+    private float[] _laneYPositions = new float[5] { 3.8f, 3.5f, 2.8f, 1.3f, -0.3f };
 
     private float _timer;
 
