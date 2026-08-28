@@ -1,13 +1,16 @@
 using System.Collections;
 using UnityEngine;
-using TMPro; 
+using UnityEngine.UI;
 
 public class PowerUpManager : MonoBehaviour
-{[Header("UI Text Notification")]
-    public TextMeshProUGUI statusText; 
+{
+    public static PowerUpManager Instance { get; private set; }
+
+    [Header("UI Text Notification")]
+    public Text statusText;
 
     [Header("Visual Perisai (Shield)")]
-    public GameObject shieldVisualObject; 
+    public GameObject shieldVisualObject;
 
     [Header("Durasi Sesuai Desain (Detik)")]
     public float defenseDuration = 5f;
@@ -16,120 +19,142 @@ public class PowerUpManager : MonoBehaviour
     public float fasterDuration = 5f;
     public float freezeDuration = 3f;
 
-    [Header("Referensi Kontrol Player & Kecepatan")]
-    public float baseMoveSpeed = 5f; // Kecepatan normal player
-    private DummyPlayerController playerController;
+    private PlayerMovement playerMovement;
+    private float baseMoveSpeed; // Menyimpan nilai default moveSpeed dari PlayerMovement
+
+    // Status Penanda Power Up
+    [HideInInspector] public bool isDefenseActive = false;
+    [HideInInspector] public bool isSlowActive = false;
+    [HideInInspector] public bool isBoosterActive = false;
+    [HideInInspector] public bool isFasterActive = false;
+    [HideInInspector] public bool isFreezeActive = false;
+
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+    }
 
     void Start()
     {
         if (statusText != null) statusText.text = "";
-        
-        if (shieldVisualObject != null)
-        {
-            shieldVisualObject.SetActive(false);
-        }
 
-        // Ambil komponen penggerak player secara otomatis
-        playerController = GetComponent<DummyPlayerController>();
-        if (playerController != null)
+        // Ambil komponen PlayerMovement dan simpan nilai speed awalnya
+        playerMovement = GetComponent<PlayerMovement>();
+        if (playerMovement != null)
         {
-            baseMoveSpeed = playerController.moveSpeed;
+            baseMoveSpeed = playerMovement.moveSpeed;
         }
     }
 
     public void TriggerPowerUp(string effectName)
     {
-        // Hentikan efek sebelumnya agar tidak tumpang tindih
-        StopAllCoroutines(); 
+        StopAllCoroutines();
+        ResetAllPowerUpStates();
 
         switch (effectName)
         {
-            case "Defense":
-                StartCoroutine(DefenseRoutine());
-                break;
-            case "Slow":
-                StartCoroutine(SlowRoutine());
-                break;
-            case "Booster":
-                StartCoroutine(BoosterRoutine());
-                break;
-            case "Faster":
-                StartCoroutine(FasterRoutine());
-                break;
-            case "Freeze":
-                StartCoroutine(FreezeRoutine());
-                break;
+            case "Defense": StartCoroutine(DefenseRoutine()); break;
+            case "Slow": StartCoroutine(SlowRoutine()); break;
+            case "Booster": StartCoroutine(BoosterRoutine()); break;
+            case "Faster": StartCoroutine(FasterRoutine()); break;
+            case "Freeze": StartCoroutine(FreezeRoutine()); break;
         }
     }
 
-    // 1. DEFENSE: Kebal / ada perisai
+    public void CancelPowerUpsOnDeath()
+    {
+        StopAllCoroutines();
+        ResetAllPowerUpStates();
+
+        if (shieldVisualObject != null) shieldVisualObject.SetActive(false);
+
+        // Kembalikan speed ke normal jika mati saat sedang Freeze/Booster/Faster
+        if (playerMovement != null)
+        {
+            playerMovement.moveSpeed = baseMoveSpeed;
+        }
+    }
+
+    private void ResetAllPowerUpStates()
+    {
+        isDefenseActive = false;
+        isSlowActive = false;
+        isBoosterActive = false;
+        isFasterActive = false;
+        isFreezeActive = false;
+    }
+
     IEnumerator DefenseRoutine()
     {
-        if (statusText != null) statusText.text = "Defense Shield Active!";
+        isDefenseActive = true;
+        if (statusText != null) statusText.text = "Invisible Shield Active!";
         if (shieldVisualObject != null) shieldVisualObject.SetActive(true);
-        
-        Debug.Log("Defense Aktif: Player kebal & ada perisai.");
+
         yield return new WaitForSecondsRealtime(defenseDuration);
 
+        isDefenseActive = false;
         if (shieldVisualObject != null) shieldVisualObject.SetActive(false);
         if (statusText != null) statusText.text = "";
     }
 
-    // 2. SLOW: Memperlambat tempo game (menguntungkan saat game makin cepat)
     IEnumerator SlowRoutine()
     {
+        isSlowActive = true;
         if (statusText != null) statusText.text = "Game Slowed Down (10s)!";
-        
-        Time.timeScale = 0.5f; // Memperlambat jalannya waktu game jadi setengahnya
-        Debug.Log("Slow Aktif: Permainan melambat.");
-        
+        Time.timeScale = 0.5f;
+
         yield return new WaitForSecondsRealtime(slowDuration);
 
-        Time.timeScale = 1.0f; // Kembalikan normal
+        isSlowActive = false;
+        Time.timeScale = 1.0f;
         if (statusText != null) statusText.text = "";
     }
 
-    // 3. BOOSTER: Menerjang cepat & skor melesat (simulasi kecepatan tinggi)
     IEnumerator BoosterRoutine()
     {
+        isBoosterActive = true;
         if (statusText != null) statusText.text = "SPEED BOOSTER!";
-        
-        if (playerController != null) playerController.moveSpeed = baseMoveSpeed * 2.5f;
-        Debug.Log("Booster Aktif: Menerjang cepat!");
+        if (playerMovement != null) playerMovement.moveSpeed = baseMoveSpeed * 2.5f;
 
         yield return new WaitForSecondsRealtime(boosterDuration);
 
-        if (playerController != null) playerController.moveSpeed = baseMoveSpeed;
+        isBoosterActive = false;
+        if (playerMovement != null) playerMovement.moveSpeed = baseMoveSpeed;
         if (statusText != null) statusText.text = "";
     }
 
-    // 4. FASTER (Debuff): Karakter & permainan makin cepat, susah dikontrol (durasi 5s)
     IEnumerator FasterRoutine()
     {
+        isFasterActive = true;
         if (statusText != null) statusText.text = "FASTER x2 (Hard Mode)!";
-        
-        Time.timeScale = 1.5f; // Waktu game dipercepat
-        if (playerController != null) playerController.moveSpeed = baseMoveSpeed * 2f;
-        
-        Debug.Log("Faster Aktif: Game & Player ngebut x2!");
+        Time.timeScale = 1.5f;
+        if (playerMovement != null) playerMovement.moveSpeed = baseMoveSpeed * 2f;
+
         yield return new WaitForSecondsRealtime(fasterDuration);
 
+        isFasterActive = false;
         Time.timeScale = 1.0f;
-        if (playerController != null) playerController.moveSpeed = baseMoveSpeed;
+        if (playerMovement != null) playerMovement.moveSpeed = baseMoveSpeed;
         if (statusText != null) statusText.text = "";
     }
 
-    // 5. FREEZE (Debuff): Karakter membeku total gak bisa pindah wilayah (durasi 3s)
     IEnumerator FreezeRoutine()
     {
+        isFreezeActive = true;
         if (statusText != null) statusText.text = "FROZEN (Cant Move)!";
-        
-        if (playerController != null) playerController.moveSpeed = 0f; // Kunci total pergerakan player
-        
-        Debug.Log("Freeze Aktif: Player membeku!");
+
+        // Buat speed jadi 0, PlayerMovement akan otomatis membaca ini dan velocity jadi 0
+        if (playerMovement != null) playerMovement.moveSpeed = 0f;
+
         yield return new WaitForSecondsRealtime(freezeDuration);
 
-        if (playerController != null) playerController.moveSpeed = baseMoveSpeed; // Kembalikan kecepatan normal
+        isFreezeActive = false;
+        if (playerMovement != null) playerMovement.moveSpeed = baseMoveSpeed;
         if (statusText != null) statusText.text = "";
     }
 }
