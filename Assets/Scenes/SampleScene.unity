@@ -133,6 +133,7 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
+  - component: {fileID: 519420033}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -214,6 +215,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &519420033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f961774a53a7d348888fa6e410b4bfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _traumaExponent: 2
+  _traumaDecay: 1.5
+  _maxPositionOffset: {x: 0.5, y: 0.5, z: 0}
+  _maxRotationRoll: 5
+  _frequency: 500
+  _speedTraumaBaseline: 0.05
 --- !u!1 &639633835
 GameObject:
   m_ObjectHideFlags: 0
@@ -224,6 +243,7 @@ GameObject:
   m_Component:
   - component: {fileID: 639633837}
   - component: {fileID: 639633836}
+  - component: {fileID: 639633838}
   m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
@@ -272,7 +292,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5325752608024b141a28dda05b12fad7, type: 3}
+  m_Sprite: {fileID: -7118049402705092772, guid: d51c161fcab9b3246bb915b953339ebf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -292,12 +312,25 @@ Transform:
   m_GameObject: {fileID: 639633835}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.2466, y: 0.0339, z: 5}
-  m_LocalScale: {x: 0.4447595, y: 0.2905274, z: 1}
+  m_LocalPosition: {x: 1.17, y: -5.28, z: 5}
+  m_LocalScale: {x: 16.909447, y: 11.04565, z: 38.019302}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &639633838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 639633835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0564f3781024f34d926fe0d4f209291, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scrollSpeed: 5
 --- !u!1 &667402987
 GameObject:
   m_ObjectHideFlags: 0
@@ -404,6 +437,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 394d9dbcb9f2adb43b5b5cbe20dab33d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  globalSpeed: 5
 --- !u!4 &789288277
 Transform:
   m_ObjectHideFlags: 0
@@ -490,7 +524,7 @@ Transform:
   m_GameObject: {fileID: 979008872}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.2397885, z: 0}
+  m_LocalPosition: {x: 0, y: 2.96, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -525,7 +559,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9985ba67b94af0e4b80bce60c2c0e430, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxTime: 2
+  _maxTime: 0.9
   _obstacle: {fileID: 3550451074615173273, guid: 38ebbb067bfaed143b23244841a4d209, type: 3}
   _laneYPositions:
   - 1
@@ -540,7 +574,7 @@ Transform:
   m_GameObject: {fileID: 1264418979}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.52, y: -1.45, z: 0}
+  m_LocalPosition: {x: 10.23, y: -1.45, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -614,19 +648,19 @@ CompositeCollider2D:
   - m_Collider: {fileID: 979008873}
     m_ColliderPaths:
     - - X: 142827232
-        Y: 27397886
+        Y: 34600000
       - X: -37919368
-        Y: 27397886
+        Y: 34600000
       - X: -37919368
-        Y: 17397886
+        Y: 24600000
       - X: 142827232
-        Y: 17397886
+        Y: 24600000
   m_CompositePaths:
     m_Paths:
-    - - {x: 14.282695, y: 1.7397887}
-      - {x: 14.282695, y: 2.7397885}
-      - {x: -3.7919369, y: 2.7397592}
-      - {x: -3.7919075, y: 1.7397887}
+    - - {x: 14.282695, y: 2.46}
+      - {x: 14.282695, y: 3.46}
+      - {x: -3.7919369, y: 3.459971}
+      - {x: -3.7919075, y: 2.46}
     - - {x: 14.282695, y: -3.9402113}
       - {x: 14.282695, y: -2.9402113}
       - {x: -3.7919369, y: -2.9402404}
