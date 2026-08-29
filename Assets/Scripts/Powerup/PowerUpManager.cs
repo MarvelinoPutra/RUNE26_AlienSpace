@@ -132,7 +132,7 @@ public class PowerUpManager : MonoBehaviour
     {
         isFasterActive = true;
         if (statusText != null) statusText.text = "FASTER x2 (Hard Mode)!";
-        Time.timeScale = 1.9f;
+        Time.timeScale = 1.5f;
         if (playerMovement != null) playerMovement.moveSpeed = baseMoveSpeed * 2f;
 
         yield return new WaitForSecondsRealtime(fasterDuration);

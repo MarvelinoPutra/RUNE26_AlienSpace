@@ -99,7 +99,7 @@ public class GameManager : MonoBehaviour
     public void GoToHome()
     {
         Time.timeScale = 1f; // Sangat penting agar menu utama tidak ikutan freeze
-        SceneManager.LoadSceneAsync(1); // Load scene Home (index 1)
+        SceneManager.LoadSceneAsync(0); // Load scene Home (index 1)
     }
 
     private void OnDestroy()

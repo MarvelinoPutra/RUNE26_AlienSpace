@@ -11,7 +11,7 @@ public class MenuManager : MonoBehaviour
     public GameObject Menu, Setting, Credits_UI, Logo;
     public void PlayGame()
     {
-        SceneManager.LoadSceneAsync(0);
+        SceneManager.LoadSceneAsync(1);
     }
 
     public void ExitGame()
