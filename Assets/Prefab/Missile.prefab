@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: _speed
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: -3173179172128909435, guid: 38ebbb067bfaed143b23244841a4d209, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: -1953847898433195168, guid: 694c0cc709ed4ec41adbd667d15647bd, type: 3}
     - target: {fileID: 2323217570329912344, guid: 38ebbb067bfaed143b23244841a4d209, type: 3}
       propertyPath: m_Sprite
       value: 

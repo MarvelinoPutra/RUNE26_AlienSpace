@@ -36,11 +36,12 @@ public class ObstacleSpawner : MonoBehaviour
 
         // Pilih 1 indeks jalur acak (0, 1, atau 2)
         int randomLaneIndex = Random.Range(0, _laneYPositions.Length);
-        int randomPrefabIndex = Random.Range(0, 2);
+        int randomPrefabIndex = Random.Range(0, 3);
         float yPos = _laneYPositions[randomLaneIndex];
 
         // Buat posisi spawn 1 obstacle saja
         Vector3 spawnPos = transform.position + new Vector3(0, yPos, 0);
+        Debug.Log("Random Number: " + randomPrefabIndex);
         GameObject obs = Instantiate(obstacleList[randomPrefabIndex], spawnPos, Quaternion.identity);
 
         Destroy(obs, 10f);
