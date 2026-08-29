@@ -27,6 +27,7 @@ public class ItemPickup2D : MonoBehaviour
             if (playerPowerUp != null)
             {
                 playerPowerUp.TriggerPowerUp(selectedEffect.ToString());
+                AudioManager.Instance.PlaySFX("Bubble");
             }
 
             if (bubbleBreakEffectPrefab != null)
@@ -35,6 +36,7 @@ public class ItemPickup2D : MonoBehaviour
                 AudioManager.Instance.PlaySFX("Bubble");
             }
 
+            AudioManager.Instance.PlaySFX("Bubble");
             Destroy(gameObject);
         }
     }

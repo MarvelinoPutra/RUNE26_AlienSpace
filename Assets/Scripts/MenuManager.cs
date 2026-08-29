@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
+    public static ObstacleManager Instance { get; private set; }
     //fungsi ngeload ke scene gamenya
     public GameObject Menu, Setting, Credits_UI, Logo;
     public void PlayGame()

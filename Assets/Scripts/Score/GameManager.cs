@@ -1,49 +1,71 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance { get; private set; }
+
     [Header("UI References")]
     [SerializeField] private Text scoreText;
     [SerializeField] private Text highscoreText;
     [SerializeField] private GameObject gameOverPanel;
 
+    [Header("Buttons")]
+    [SerializeField] private Button restartButton;
+    [SerializeField] private Button homeButton; // Tambahan untuk tombol Home
+
     [Header("Score Settings")]
     [SerializeField] private float scoreMultiplier = 10f;
     private float currentScore = 0f;
     private float highscore = 0f;
-    
+
     private bool isPlaying = true;
+
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+    }
 
     void Start()
     {
-        // Ambil data high score yang tersimpan sebelumnya
         highscore = PlayerPrefs.GetFloat("Highscore", 0f);
         UpdateUI();
 
-        // Sembunyikan panel game over saat awal game
         if (gameOverPanel != null)
             gameOverPanel.SetActive(false);
+
+        // KODE SAKTI ANTI-MISSING: Tombol Restart
+        if (restartButton != null)
+        {
+            restartButton.onClick.RemoveAllListeners();
+            restartButton.onClick.AddListener(RestartGame);
+        }
+
+        // KODE SAKTI ANTI-MISSING: Tombol Home
+        if (homeButton != null)
+        {
+            homeButton.onClick.RemoveAllListeners();
+            homeButton.onClick.AddListener(GoToHome);
+        }
     }
 
     void Update()
     {
         if (isPlaying)
         {
-            // Tambah skor seiring waktu berjalan
             currentScore += scoreMultiplier * Time.deltaTime;
-            UpdateUI();
 
-            // Simpan high score jika skor saat ini lebih tinggi
             if (currentScore > highscore)
             {
                 highscore = currentScore;
-                PlayerPrefs.SetFloat("Highscore", highscore);
-                PlayerPrefs.Save();
             }
+            UpdateUI();
         }
     }
 
@@ -51,30 +73,46 @@ public class GameManager : MonoBehaviour
     {
         if (scoreText != null)
             scoreText.text = "Score: " + Mathf.FloorToInt(currentScore).ToString();
-        
+
         if (highscoreText != null)
             highscoreText.text = "High Score: " + Mathf.FloorToInt(highscore).ToString();
-    }   
+    }
 
     public void GameOver()
     {
         isPlaying = false;
+        SaveHighscoreData();
 
-        // Munculkan panel kalah
         if (gameOverPanel != null)
             gameOverPanel.SetActive(true);
 
-        // Hentikan waktu permainan
         Time.timeScale = 0f;
     }
 
-    // Fungsi ini dihubungkan ke tombol "Restart" di UI
     public void RestartGame()
     {
-        // Kembalikan waktu normal sebelum merestart scene
         Time.timeScale = 1f;
-        
-        // Memuat ulang scene yang sedang aktif
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    // Fungsi baru untuk tombol Home
+    public void GoToHome()
+    {
+        Time.timeScale = 1f; // Sangat penting agar menu utama tidak ikutan freeze
+        SceneManager.LoadSceneAsync(1); // Load scene Home (index 1)
+    }
+
+    private void OnDestroy()
+    {
+        SaveHighscoreData();
+    }
+
+    private void SaveHighscoreData()
+    {
+        if (currentScore > PlayerPrefs.GetFloat("Highscore", 0f))
+        {
+            PlayerPrefs.SetFloat("Highscore", currentScore);
+            PlayerPrefs.Save();
+        }
     }
 }
