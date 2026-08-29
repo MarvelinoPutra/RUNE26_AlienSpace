@@ -678,7 +678,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0564f3781024f34d926fe0d4f209291, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _scrollSpeed: 1.5
+  _scrollSpeed: 2
 --- !u!1 &667402987
 GameObject:
   m_ObjectHideFlags: 0
@@ -1435,7 +1435,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9985ba67b94af0e4b80bce60c2c0e430, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxTime: 0.9
+  _maxTime: 0.6
   obstacleList:
   - {fileID: 3550451074615173273, guid: 38ebbb067bfaed143b23244841a4d209, type: 3}
   - {fileID: 687516672938437917, guid: b869e59666a2b0643b416b2380c29a2e, type: 3}
@@ -1804,7 +1804,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73ac34ed81b31e44fa87a03bc2f62813, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 6.2
+  moveSpeed: 6.5
   rb: {fileID: 1414582237}
 --- !u!114 &1414582241
 MonoBehaviour:

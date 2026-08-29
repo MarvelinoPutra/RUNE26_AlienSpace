@@ -106,12 +106,12 @@ public class PowerUpManager : MonoBehaviour
     {
         isSlowActive = true;
         if (statusText != null) statusText.text = "Game Slowed Down (10s)!";
-        Time.timeScale = 0.5f;
+        Time.timeScale = 1.0f;
 
         yield return new WaitForSecondsRealtime(slowDuration);
 
         isSlowActive = false;
-        Time.timeScale = 1.0f;
+        Time.timeScale = 1.3f;
         if (statusText != null) statusText.text = "";
     }
 
@@ -132,7 +132,7 @@ public class PowerUpManager : MonoBehaviour
     {
         isFasterActive = true;
         if (statusText != null) statusText.text = "FASTER x2 (Hard Mode)!";
-        Time.timeScale = 1.5f;
+        Time.timeScale = 1.9f;
         if (playerMovement != null) playerMovement.moveSpeed = baseMoveSpeed * 2f;
 
         yield return new WaitForSecondsRealtime(fasterDuration);
