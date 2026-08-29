@@ -302,8 +302,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 138.57184, y: -50.802124}
-  m_SizeDelta: {x: 231.1437, y: 73.6042}
+  m_AnchoredPosition: {x: 168.72064, y: -51.60901}
+  m_SizeDelta: {x: 291.4414, y: 75.218}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &293378122
 CanvasRenderer:
@@ -334,12 +334,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 50
+    m_Font: {fileID: 12800000, guid: 1c944ae8e7f50a244ad8d680abb0a8f2, type: 3}
+    m_FontSize: 64
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
-    m_MaxSize: 50
+    m_MaxSize: 64
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -678,7 +678,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0564f3781024f34d926fe0d4f209291, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _scrollSpeed: 5
+  _scrollSpeed: 1.5
 --- !u!1 &667402987
 GameObject:
   m_ObjectHideFlags: 0
@@ -1436,7 +1436,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxTime: 0.9
-  _obstacle: {fileID: 3550451074615173273, guid: 38ebbb067bfaed143b23244841a4d209, type: 3}
+  obstacleList:
+  - {fileID: 3550451074615173273, guid: 38ebbb067bfaed143b23244841a4d209, type: 3}
+  - {fileID: 687516672938437917, guid: b869e59666a2b0643b416b2380c29a2e, type: 3}
+  - {fileID: 687516672938437917, guid: 17be860ccb754e246826cea5d333e9c8, type: 3}
   _laneYPositions:
   - 2.8
   - 2
@@ -1603,7 +1606,7 @@ GameObject:
   - component: {fileID: 1384236104}
   - component: {fileID: 1384236103}
   m_Layer: 5
-  m_Name: High ScoreText
+  m_Name: HighScoreText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1630,13 +1633,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 50
+    m_Font: {fileID: 12800000, guid: 1c944ae8e7f50a244ad8d680abb0a8f2, type: 3}
+    m_FontSize: 64
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 2
-    m_MaxSize: 50
-    m_Alignment: 2
+    m_MinSize: 0
+    m_MaxSize: 128
+    m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -1667,10 +1670,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 398950976}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 1}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -1774, y: -117}
-  m_SizeDelta: {x: 272.7011, y: 73.604}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 241.28809, y: -124.62848}
+  m_SizeDelta: {x: 436.1763, y: 70.821}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1414582234
 GameObject:
@@ -2036,8 +2039,8 @@ MonoBehaviour:
   scoreText: {fileID: 293378123}
   highscoreText: {fileID: 1384236103}
   gameOverPanel: {fileID: 1039394950}
-  restartButton: {fileID: 0}
-  homeButton: {fileID: 0}
+  restartButton: {fileID: 909821580}
+  homeButton: {fileID: 811558805}
   scoreMultiplier: 10
 --- !u!4 &1978861937
 Transform:
@@ -2086,11 +2089,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 968413961}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 1}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -772.3154, y: -352.9248}
-  m_SizeDelta: {x: 458.9023, y: 150.8497}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 3, y: -103.17703}
+  m_SizeDelta: {x: 802.3563, y: 145.6459}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &2000493565
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2112,12 +2115,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 50
+    m_Font: {fileID: 12800000, guid: 1c944ae8e7f50a244ad8d680abb0a8f2, type: 3}
+    m_FontSize: 64
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 5
-    m_MaxSize: 50
+    m_MaxSize: 64
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1

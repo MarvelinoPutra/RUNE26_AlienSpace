@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 2323217570329912344}
   - component: {fileID: 7050158999230177392}
   - component: {fileID: -7220293710876544689}
-  - component: {fileID: 9146505794791000019}
+  - component: {fileID: -7194006540650476926}
   m_Layer: 0
-  m_Name: ObstaclePrefab
+  m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,10 +45,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 3550451074615173273}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0809c43501800074da96163af948b971, type: 3}
+  m_Script: {fileID: 11500000, guid: abfa411c22856e142857618711095f30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 7
+  _speed: 5
 --- !u!212 &2323217570329912344
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -90,7 +90,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 1809278868438548993, guid: 7ee122f197600c24fba3987923163b66, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -133,9 +133,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.1}
+  m_Offset: {x: 0, y: 0.14196068}
   serializedVersion: 2
-  m_Radius: 0.1
+  m_Radius: 0.11835779
 --- !u!114 &-7220293710876544689
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,20 +148,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 792d1a5ac8bef9f438915cc9088c9acc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &9146505794791000019
-MonoBehaviour:
+--- !u!95 &-7194006540650476926
+Animator:
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3550451074615173273}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e219b69dcc6204249ba04c9b84122342, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _obstacleSprites:
-  - {fileID: -4154624844594012573, guid: 265062261a678bc43a3938a0f7b31adf, type: 3}
-  - {fileID: -2193440512487603903, guid: 694c0cc709ed4ec41adbd667d15647bd, type: 3}
-  - {fileID: 1809278868438548993, guid: 7ee122f197600c24fba3987923163b66, type: 3}
-  _useExactPolygonCollider: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
